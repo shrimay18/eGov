@@ -1,0 +1,21 @@
+services:
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "3001:3001"
+
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "3002:3002"
+
+  nginx:
+    build:
+      context: ./nginx  # Ensure this matches your directory name
+    ports:
+      - "80:80"
+    depends_on:
+      - user-service
+      - order-service
